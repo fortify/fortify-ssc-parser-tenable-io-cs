@@ -1,0 +1,134 @@
+plugins {
+  id "io.freefair.lombok" version "4.1.2"
+  id "com.jfrog.bintray" version "1.8.4"
+  id 'com.intershop.gradle.scmversion' version '6.0.0'
+}
+
+group 'com.fortify.ssc.parser.tenable.io.cs'
+
+apply plugin: 'java'
+sourceCompatibility = 1.8
+
+scm {
+    version {
+        type = 'threeDigits'
+        initialVersion = '1.0.0'
+        increment = 'MINOR'
+    }
+}
+
+ext {
+    versionRegex = '(\\d+)(\\.\\d+)*'
+    jacksonVersion = "2.8.4"
+}
+
+def getDateTime() {
+    new Date().format('yyyyMMddHHmmssSSS')
+}
+
+// Get the SSC plugin version based on current SCM version.
+// Due to SSC plugin version length restrictions, we cannot 
+// use the full date/time as part of the version number for
+// snapshot versions. As such, we use the number of hours 
+// since Epoch.
+def getPluginVersion() {
+    def time = System.currentTimeMillis().intdiv(1000)
+    def hours = time.intdiv(3600)
+    return scm.version.version \
+        .replaceFirst(/^(\d+\.)(\d+).+?(-SNAPSHOT)?$/, '$1$2$3') \
+        .replaceFirst(/-SNAPSHOT/, ".${hours}")
+}
+
+// Get the project version; this is used for both the jar file
+// name and the version on Bintray. As Bintray version needs to 
+// be unique, we can't use getPluginVersion() defined above 
+// (since uploading multiple versions within a single hour would fail). 
+def getProjectVersion() {
+	return scm.version.version \
+        .replaceFirst(/^(\d+\.)(\d+).+?(-SNAPSHOT)?$/, '$1$2$3-release') \
+        .replaceFirst(/-SNAPSHOT-release/, "-beta-${getDateTime()}")
+}
+
+// Project and plugin version based on SCM information
+version = getProjectVersion()
+def sscPluginVersion = getPluginVersion()
+
+repositories {
+	mavenLocal()
+    // repository with fortify artifacts
+    maven { url "http://dl.bintray.com/fortify/maven-public" }
+    // repository with fortify-ps releases
+    maven { url "https://dl.bintray.com/fortify-ps/maven" }
+    // repository with fortify-ps snapshots
+    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+    mavenCentral()
+}
+
+configurations {
+    compileExport
+    compile.extendsFrom (compileExport)
+}
+
+configurations.all {
+    // Don't cache modules that may change (i.e. snapshots)
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    // dependencies provided by plugin runtime
+    compile 'com.fortify.plugin:plugin-api:1.0.1'
+    compile 'org.slf4j:slf4j-api:1.7.21'
+
+    compileExport(group: 'com.fortify.ssc.parser.util', name: 'fortify-ssc-parser-util', version:'1.1.0-SNAPSHOT', changing: true) { transitive = true }
+    
+    //testImplementation 'org.junit.platform:junit-jupiter-api:5.3.1'
+    
+    testImplementation(group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1')
+    testImplementation(group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.1.0")
+    testRuntimeOnly(group: 'org.junit.jupiter', name:'junit-jupiter-engine', version: '5.3.1')
+    testRuntimeOnly(group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1')
+}
+
+jar {
+    doFirst {
+        // check if version matches requirements
+        if (!sscPluginVersion.matches(versionRegex)) {
+            throw new InvalidUserDataException("Plugin version '$sscPluginVersion' does not match '$versionRegex'")
+        }
+    }
+    // replace version placeholders in plugin.xml
+    filesMatching('plugin.xml') {
+        filter {
+            it.replaceAll('<!--VERSION-->.*?<!--/VERSION-->', sscPluginVersion)
+        }
+    }
+    // include files from compileExport dependencies
+    from { configurations.compileExport.collect { it.isDirectory() ? it : zipTree(it).matching { exclude 'META-INF/*' } } }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publish = true
+    pkg {
+        repo = 'binaries'
+        name = 'fortify-ssc-parser-tenable-io-cs'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs.git'
+        userOrg = 'fortify-ps'
+        version {
+			name = project.version
+		}
+    }
+    filesSpec {
+       from("build/libs") {
+          include "*.jar"
+       }
+       into '.'
+    }
+}
+

@@ -1,0 +1,969 @@
+{
+  "malware": [],
+  "sha256": "sha256:ca00000f44ef9641581de2b31669142abe48591db899107536b3d035287c9461",
+  "os": "LINUX_ALPINE",
+  "risk_score": 9,
+  "findings": [
+    {
+      "nvdFinding": {
+        "cve": "CVE-2018-1000654",
+        "description": "GNU Libtasn1-4.13 libtasn1-4.13 version libtasn1-4.13, libtasn1-4.12 contains a DoS, specifically CPU usage will reach 100% when running asn1Paser against the POC due to an issue in _asn1_expand_object_id(p_tree), after a long time, the program will be killed. This attack appears to be exploitable via parsing a crafted file.",
+        "published_date": "2018-08-20T19:31Z",
+        "modified_date": "2019-10-03T00:03Z",
+        "cvss_score": "5.5",
+        "access_vector": "NETWORK",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "COMPLETE",
+        "confidentiality_impact": "NONE",
+        "integrity_impact": "NONE",
+        "cwe": "NVD-CWE-noinfo",
+        "cpe": [
+          "cpe:2.3:a:gnu:libtasn1:4.12:*:*:*:*:*:*:*",
+          "cpe:2.3:a:gnu:libtasn1:4.13:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00009.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00018.html",
+          "http://www.securityfocus.com/bid/105151",
+          "https://gitlab.com/gnutls/libtasn1/issues/4"
+        ]
+      },
+      "packages": [
+        {
+          "name": "libtasn1",
+          "version": "4.13-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2766",
+        "description": "Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Networking). Supported versions that are affected are Java SE: 7u221, 8u212, 11.0.3 and 12.0.1; Java SE Embedded: 8u211. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded. Successful attacks require human interaction from a person other than the attacker. Successful attacks of this vulnerability can result in unauthorized read access to a subset of Java SE, Java SE Embedded accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 3.1 (Confidentiality impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-08-15T15:15Z",
+        "cvss_score": "3.1",
+        "access_vector": "NETWORK",
+        "access_complexity": "HIGH",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:12.0.1:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:12.0.1:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-1563",
+        "description": "In situations where an attacker receives automated notification of the success or failure of a decryption attempt an attacker, after sending a very large number of messages to be decrypted, can recover a CMS/PKCS7 transported encryption key or decrypt any RSA encrypted message that was encrypted with the public RSA key, using a Bleichenbacher padding oracle attack. Applications are not affected if they use a certificate together with the private RSA key to the CMS_decrypt or PKCS7_decrypt functions to select the correct recipient info to decrypt. Fixed in OpenSSL 1.1.1d (Affected 1.1.1-1.1.1c). Fixed in OpenSSL 1.1.0l (Affected 1.1.0-1.1.0k). Fixed in OpenSSL 1.0.2t (Affected 1.0.2-1.0.2s).",
+        "published_date": "2019-09-10T17:15Z",
+        "modified_date": "2019-09-12T11:15Z",
+        "cvss_score": "3.7",
+        "access_vector": "NETWORK",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-311",
+        "cpe": [
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00054.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00072.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-10/msg00012.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-10/msg00016.html",
+          "http://packetstormsecurity.com/files/154467/Slackware-Security-Advisory-openssl-Updates.html",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=08229ad838c50f644d7e928e2eef147b4308ad64",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=631f94db0065c78181ca9ba5546ebc8bb3884b97",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=e21f8cf78a125cd3c8c0d1a1a6c8bb0b901f893f",
+          "https://lists.debian.org/debian-lts-announce/2019/09/msg00026.html",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/GY6SNRJP2S7Y42GIIDO3HXPNMDYN2U3A/",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZN4VVQJ3JDCHGIHV4Y2YTXBYQZ6PWQ7E/",
+          "https://seclists.org/bugtraq/2019/Oct/0",
+          "https://seclists.org/bugtraq/2019/Oct/1",
+          "https://seclists.org/bugtraq/2019/Sep/25",
+          "https://security.netapp.com/advisory/ntap-20190919-0002/",
+          "https://support.f5.com/csp/article/K97324400?utm_source=f5support&amp;utm_medium=RSS",
+          "https://www.debian.org/security/2019/dsa-4539",
+          "https://www.debian.org/security/2019/dsa-4540",
+          "https://www.openssl.org/news/secadv/20190910.txt",
+          "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html"
+        ]
+      },
+      "packages": [
+        {
+          "name": "libssl1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        },
+        {
+          "name": "libcrypto1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2842",
+        "description": "Vulnerability in the Java SE component of Oracle Java SE (subcomponent: JCE). The supported version that is affected is Java SE: 8u212. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE. Successful attacks of this vulnerability can result in unauthorized ability to cause a partial denial of service (partial DOS) of Java SE. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 3.7 (Availability impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "3.7",
+        "access_vector": "NETWORK",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "PARTIAL",
+        "confidentiality_impact": "NONE",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://usn.ubuntu.com/4080-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-5018",
+        "description": "An exploitable use after free vulnerability exists in the window function functionality of Sqlite3 3.26.0. A specially crafted SQL command can cause a use after free vulnerability, potentially resulting in remote code execution. An attacker can send a malicious SQL command to trigger this vulnerability.",
+        "published_date": "2019-05-10T19:29Z",
+        "modified_date": "2019-05-21T19:29Z",
+        "cvss_score": "8.1",
+        "access_vector": "NETWORK",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "PARTIAL",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "PARTIAL",
+        "cwe": "CWE-416",
+        "cpe": [
+          "cpe:2.3:a:sqlite:sqlite:3.26.0:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://packetstormsecurity.com/files/152809/Sqlite3-Window-Function-Remote-Code-Execution.html",
+          "http://www.securityfocus.com/bid/108294",
+          "https://security.gentoo.org/glsa/201908-09",
+          "https://security.netapp.com/advisory/ntap-20190521-0001/",
+          "https://talosintelligence.com/vulnerability_reports/TALOS-2019-0777"
+        ]
+      },
+      "packages": [
+        {
+          "name": "sqlite-libs",
+          "version": "3.26.0-r3",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-1547",
+        "description": "Normally in OpenSSL EC groups always have a co-factor present and this is used in side channel resistant code paths. However, in some cases, it is possible to construct a group using explicit parameters (instead of using a named curve). In those cases it is possible that such a group does not have the cofactor present. This can occur even where all the parameters match a known named curve. If such a curve is used then OpenSSL falls back to non-side channel resistant code paths which may result in full key recovery during an ECDSA signature operation. In order to be vulnerable an attacker would have to have the ability to time the creation of a large number of signatures where explicit parameters with no co-factor present are in use by an application using libcrypto. For the avoidance of doubt libssl is not vulnerable because explicit parameters are never used. Fixed in OpenSSL 1.1.1d (Affected 1.1.1-1.1.1c). Fixed in OpenSSL 1.1.0l (Affected 1.1.0-1.1.0k). Fixed in OpenSSL 1.0.2t (Affected 1.0.2-1.0.2s).",
+        "published_date": "2019-09-10T17:15Z",
+        "modified_date": "2019-09-12T16:15Z",
+        "cvss_score": "4.7",
+        "access_vector": "LOCAL",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-311",
+        "cpe": [
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00054.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00072.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-10/msg00012.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-10/msg00016.html",
+          "http://packetstormsecurity.com/files/154467/Slackware-Security-Advisory-openssl-Updates.html",
+          "https://arxiv.org/abs/1909.01785",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=21c856b75d81eff61aa63b4f036bb64a85bf6d46",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=30c22fa8b1d840036b8e203585738df62a03cec8",
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=7c1709c2da5414f5b6133d00a03fc8c5bf996c7a",
+          "https://lists.debian.org/debian-lts-announce/2019/09/msg00026.html",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/GY6SNRJP2S7Y42GIIDO3HXPNMDYN2U3A/",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZN4VVQJ3JDCHGIHV4Y2YTXBYQZ6PWQ7E/",
+          "https://seclists.org/bugtraq/2019/Oct/0",
+          "https://seclists.org/bugtraq/2019/Oct/1",
+          "https://seclists.org/bugtraq/2019/Sep/25",
+          "https://security.netapp.com/advisory/ntap-20190919-0002/",
+          "https://support.f5.com/csp/article/K73422160?utm_source=f5support&amp;utm_medium=RSS",
+          "https://www.debian.org/security/2019/dsa-4539",
+          "https://www.debian.org/security/2019/dsa-4540",
+          "https://www.openssl.org/news/secadv/20190910.txt",
+          "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html"
+        ]
+      },
+      "packages": [
+        {
+          "name": "libssl1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        },
+        {
+          "name": "libcrypto1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2769",
+        "description": "Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Utilities). Supported versions that are affected are Java SE: 7u221, 8u212, 11.0.3 and 12.0.1; Java SE Embedded: 8u211. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded. Successful attacks of this vulnerability can result in unauthorized ability to cause a partial denial of service (partial DOS) of Java SE, Java SE Embedded. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 5.3 (Availability impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "5.3",
+        "access_vector": "NETWORK",
+        "access_complexity": "LOW",
+        "auth": "NONE",
+        "availability_impact": "PARTIAL",
+        "confidentiality_impact": "NONE",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:12.0.1:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:12.0.1:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://access.redhat.com/errata/RHSA-2019:2494",
+          "https://access.redhat.com/errata/RHSA-2019:2495",
+          "https://access.redhat.com/errata/RHSA-2019:2585",
+          "https://access.redhat.com/errata/RHSA-2019:2590",
+          "https://access.redhat.com/errata/RHSA-2019:2592",
+          "https://access.redhat.com/errata/RHSA-2019:2737",
+          "https://lists.debian.org/debian-lts-announce/2019/08/msg00020.html",
+          "https://usn.ubuntu.com/4080-1/",
+          "https://usn.ubuntu.com/4083-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-7317",
+        "description": "png_image_free in png.c in libpng 1.6.x before 1.6.37 has a use-after-free because png_image_free_function is called under png_safe_execute.",
+        "published_date": "2019-02-04T08:29Z",
+        "modified_date": "2019-08-01T17:15Z",
+        "cvss_score": "5.3",
+        "access_vector": "NETWORK",
+        "access_complexity": "HIGH",
+        "auth": "NONE",
+        "availability_impact": "PARTIAL",
+        "confidentiality_impact": "NONE",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-416",
+        "cpe": [
+          "cpe:2.3:a:libpng:libpng:1.6.36:*:*:*:*:*:*:*",
+          "cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*",
+          "cpe:2.3:o:canonical:ubuntu_linux:18.04:*:*:*:lts:*:*:*",
+          "cpe:2.3:o:canonical:ubuntu_linux:18.10:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00002.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00029.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00084.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://packetstormsecurity.com/files/152561/Slackware-Security-Advisory-libpng-Updates.html",
+          "http://www.securityfocus.com/bid/108098",
+          "https://access.redhat.com/errata/RHSA-2019:1265",
+          "https://access.redhat.com/errata/RHSA-2019:1267",
+          "https://access.redhat.com/errata/RHSA-2019:1269",
+          "https://access.redhat.com/errata/RHSA-2019:1308",
+          "https://access.redhat.com/errata/RHSA-2019:1309",
+          "https://access.redhat.com/errata/RHSA-2019:1310",
+          "https://access.redhat.com/errata/RHSA-2019:2494",
+          "https://access.redhat.com/errata/RHSA-2019:2495",
+          "https://access.redhat.com/errata/RHSA-2019:2585",
+          "https://access.redhat.com/errata/RHSA-2019:2590",
+          "https://access.redhat.com/errata/RHSA-2019:2592",
+          "https://access.redhat.com/errata/RHSA-2019:2737",
+          "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=12803",
+          "https://github.com/glennrp/libpng/issues/275",
+          "https://lists.debian.org/debian-lts-announce/2019/05/msg00032.html",
+          "https://lists.debian.org/debian-lts-announce/2019/05/msg00038.html",
+          "https://seclists.org/bugtraq/2019/Apr/30",
+          "https://seclists.org/bugtraq/2019/Apr/36",
+          "https://seclists.org/bugtraq/2019/May/56",
+          "https://seclists.org/bugtraq/2019/May/59",
+          "https://seclists.org/bugtraq/2019/May/67",
+          "https://security.gentoo.org/glsa/201908-02",
+          "https://security.netapp.com/advisory/ntap-20190719-0005/",
+          "https://usn.ubuntu.com/3962-1/",
+          "https://usn.ubuntu.com/3991-1/",
+          "https://usn.ubuntu.com/3997-1/",
+          "https://usn.ubuntu.com/4080-1/",
+          "https://usn.ubuntu.com/4083-1/",
+          "https://www.debian.org/security/2019/dsa-4435",
+          "https://www.debian.org/security/2019/dsa-4448",
+          "https://www.debian.org/security/2019/dsa-4451",
+          "https://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2762",
+        "description": "Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Utilities). Supported versions that are affected are Java SE: 7u221, 8u212, 11.0.3 and 12.0.1; Java SE Embedded: 8u211. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded. Successful attacks of this vulnerability can result in unauthorized ability to cause a partial denial of service (partial DOS) of Java SE, Java SE Embedded. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 5.3 (Availability impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "5.3",
+        "access_vector": "NETWORK",
+        "access_complexity": "LOW",
+        "auth": "NONE",
+        "availability_impact": "PARTIAL",
+        "confidentiality_impact": "NONE",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:12.0.1:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:12.0.1:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://access.redhat.com/errata/RHSA-2019:2494",
+          "https://access.redhat.com/errata/RHSA-2019:2495",
+          "https://access.redhat.com/errata/RHSA-2019:2585",
+          "https://access.redhat.com/errata/RHSA-2019:2590",
+          "https://access.redhat.com/errata/RHSA-2019:2592",
+          "https://access.redhat.com/errata/RHSA-2019:2737",
+          "https://lists.debian.org/debian-lts-announce/2019/08/msg00020.html",
+          "https://usn.ubuntu.com/4080-1/",
+          "https://usn.ubuntu.com/4083-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2745",
+        "description": "Vulnerability in the Java SE component of Oracle Java SE (subcomponent: Security). Supported versions that are affected are Java SE: 7u221, 8u212 and 11.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with logon to the infrastructure where Java SE executes to compromise Java SE. Successful attacks of this vulnerability can result in unauthorized access to critical data or complete access to all Java SE accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 5.1 (Confidentiality impacts). CVSS Vector: (CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "5.1",
+        "access_vector": "LOCAL",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://lists.debian.org/debian-lts-announce/2019/08/msg00020.html",
+          "https://usn.ubuntu.com/4080-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2786",
+        "description": "Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Security). Supported versions that are affected are Java SE: 8u212, 11.0.3 and 12.0.1; Java SE Embedded: 8u211. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Java SE, Java SE Embedded, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized read access to a subset of Java SE, Java SE Embedded accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 3.4 (Confidentiality impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "3.4",
+        "access_vector": "NETWORK",
+        "access_complexity": "HIGH",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:12.0.1:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:12.0.1:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://access.redhat.com/errata/RHSA-2019:2585",
+          "https://access.redhat.com/errata/RHSA-2019:2590",
+          "https://access.redhat.com/errata/RHSA-2019:2592",
+          "https://access.redhat.com/errata/RHSA-2019:2737",
+          "https://usn.ubuntu.com/4080-1/",
+          "https://usn.ubuntu.com/4083-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-1549",
+        "description": "OpenSSL 1.1.1 introduced a rewritten random number generator (RNG). This was intended to include protection in the event of a fork() system call in order to ensure that the parent and child processes did not share the same RNG state. However this protection was not being used in the default case. A partial mitigation for this issue is that the output from a high precision timer is mixed into the RNG state so the likelihood of a parent and child process sharing state is significantly reduced. If an application already calls OPENSSL_init_crypto() explicitly using OPENSSL_INIT_ATFORK then this problem does not occur at all. Fixed in OpenSSL 1.1.1d (Affected 1.1.1-1.1.1c).",
+        "published_date": "2019-09-10T17:15Z",
+        "modified_date": "2019-09-19T17:15Z",
+        "cvss_score": "5.3",
+        "access_vector": "NETWORK",
+        "access_complexity": "LOW",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "NONE",
+        "cwe": "CWE-330",
+        "cpe": [
+          "cpe:2.3:a:openssl:openssl:*:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=1b0fe00e2704b5e20334a16d3c9099d1ba2ef1be",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/GY6SNRJP2S7Y42GIIDO3HXPNMDYN2U3A/",
+          "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZN4VVQJ3JDCHGIHV4Y2YTXBYQZ6PWQ7E/",
+          "https://seclists.org/bugtraq/2019/Oct/1",
+          "https://security.netapp.com/advisory/ntap-20190919-0002/",
+          "https://support.f5.com/csp/article/K44070243",
+          "https://support.f5.com/csp/article/K44070243?utm_source=f5support&amp;utm_medium=RSS",
+          "https://www.debian.org/security/2019/dsa-4539",
+          "https://www.openssl.org/news/secadv/20190910.txt",
+          "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html"
+        ]
+      },
+      "packages": [
+        {
+          "name": "libssl1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        },
+        {
+          "name": "libcrypto1.1",
+          "version": "1.1.1b-r1",
+          "type": "linux"
+        }
+      ]
+    },
+    {
+      "nvdFinding": {
+        "cve": "CVE-2019-2816",
+        "description": "Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Networking). Supported versions that are affected are Java SE: 7u221, 8u212, 11.0.3 and 12.0.1; Java SE Embedded: 8u211. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Java SE, Java SE Embedded accessible data as well as unauthorized read access to a subset of Java SE, Java SE Embedded accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets (in Java SE 8), that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.0 Base Score 4.8 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N).",
+        "published_date": "2019-07-23T23:15Z",
+        "modified_date": "2019-07-31T02:15Z",
+        "cvss_score": "4.8",
+        "access_vector": "NETWORK",
+        "access_complexity": "MEDIUM",
+        "auth": "NONE",
+        "availability_impact": "NONE",
+        "confidentiality_impact": "PARTIAL",
+        "integrity_impact": "PARTIAL",
+        "cwe": "CWE-284",
+        "cpe": [
+          "cpe:2.3:a:oracle:jdk:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jdk:12.0.1:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.7.0:update_221:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_211:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:1.8.0:update_212:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:11.0.3:*:*:*:*:*:*:*",
+          "cpe:2.3:a:oracle:jre:12.0.1:*:*:*:*:*:*:*"
+        ],
+        "remediation": "",
+        "references": [
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00038.html",
+          "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00044.html",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html",
+          "https://access.redhat.com/errata/RHSA-2019:2494",
+          "https://access.redhat.com/errata/RHSA-2019:2495",
+          "https://access.redhat.com/errata/RHSA-2019:2585",
+          "https://access.redhat.com/errata/RHSA-2019:2590",
+          "https://access.redhat.com/errata/RHSA-2019:2592",
+          "https://access.redhat.com/errata/RHSA-2019:2737",
+          "https://lists.debian.org/debian-lts-announce/2019/08/msg00020.html",
+          "https://usn.ubuntu.com/4080-1/",
+          "https://usn.ubuntu.com/4083-1/"
+        ]
+      },
+      "packages": [
+        {
+          "name": "openjdk8-jre-base",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        },
+        {
+          "name": "openjdk8-jre-lib",
+          "version": "8.212.04-r0",
+          "type": "linux"
+        }
+      ]
+    }
+  ],
+  "os_version": "3.9.4",
+  "created_at": "2019-10-08T14:12:13.944Z",
+  "installed_packages": [
+    {
+      "name": "libxdmcp",
+      "version": "1.1.2-r5",
+      "type": "linux"
+    },
+    {
+      "name": "apk-tools",
+      "version": "2.10.3-r1",
+      "type": "linux"
+    },
+    {
+      "name": "libverto",
+      "version": "0.3.0-r1",
+      "type": "linux"
+    },
+    {
+      "name": "libxau",
+      "version": "1.0.8-r3",
+      "type": "linux"
+    },
+    {
+      "name": "libxcb",
+      "version": "1.13-r2",
+      "type": "linux"
+    },
+    {
+      "name": "pcsc-lite-libs",
+      "version": "1.8.24-r1",
+      "type": "linux"
+    },
+    {
+      "name": "krb5-conf",
+      "version": "1.0-r1",
+      "type": "linux"
+    },
+    {
+      "name": "freetype",
+      "version": "2.9.1-r2",
+      "type": "linux"
+    },
+    {
+      "name": "sqlite-libs",
+      "version": "3.26.0-r3",
+      "type": "linux"
+    },
+    {
+      "name": "musl-utils",
+      "version": "1.1.20-r4",
+      "type": "linux"
+    },
+    {
+      "name": "krb5-libs",
+      "version": "1.15.5-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libbsd",
+      "version": "0.8.6-r2",
+      "type": "linux"
+    },
+    {
+      "name": "libgcc",
+      "version": "8.3.0-r0",
+      "type": "linux"
+    },
+    {
+      "name": "keyutils-libs",
+      "version": "1.6-r0",
+      "type": "linux"
+    },
+    {
+      "name": "alpine-baselayout",
+      "version": "3.1.0-r3",
+      "type": "linux"
+    },
+    {
+      "name": "scanelf",
+      "version": "1.2.3-r0",
+      "type": "linux"
+    },
+    {
+      "name": "nspr",
+      "version": "4.20-r0",
+      "type": "linux"
+    },
+    {
+      "name": "nss",
+      "version": "3.41-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libtasn1",
+      "version": "4.13-r0",
+      "type": "linux"
+    },
+    {
+      "name": "musl",
+      "version": "1.1.20-r4",
+      "type": "linux"
+    },
+    {
+      "name": "libffi",
+      "version": "3.2.1-r6",
+      "type": "linux"
+    },
+    {
+      "name": "java-common",
+      "version": "0.1-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libssl1.1",
+      "version": "1.1.1b-r1",
+      "type": "linux"
+    },
+    {
+      "name": "libxtst",
+      "version": "1.2.3-r2",
+      "type": "linux"
+    },
+    {
+      "name": "libtls-standalone",
+      "version": "2.7.4-r6",
+      "type": "linux"
+    },
+    {
+      "name": "alsa-lib",
+      "version": "1.1.8-r0",
+      "type": "linux"
+    },
+    {
+      "name": "giflib",
+      "version": "5.1.4-r2",
+      "type": "linux"
+    },
+    {
+      "name": "p11-kit-trust",
+      "version": "0.23.14-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libxi",
+      "version": "1.7.9-r2",
+      "type": "linux"
+    },
+    {
+      "name": "zlib",
+      "version": "1.2.11-r1",
+      "type": "linux"
+    },
+    {
+      "name": "libxext",
+      "version": "1.3.3-r3",
+      "type": "linux"
+    },
+    {
+      "name": "ca-certificates",
+      "version": "20190108-r0",
+      "type": "linux"
+    },
+    {
+      "name": "openjdk8-jre-base",
+      "version": "8.212.04-r0",
+      "type": "linux"
+    },
+    {
+      "name": "ssl_client",
+      "version": "1.29.3-r10",
+      "type": "linux"
+    },
+    {
+      "name": "libbz2",
+      "version": "1.0.6-r6",
+      "type": "linux"
+    },
+    {
+      "name": "lksctp-tools",
+      "version": "1.0.17-r0",
+      "type": "linux"
+    },
+    {
+      "name": "busybox",
+      "version": "1.29.3-r10",
+      "type": "linux"
+    },
+    {
+      "name": "java-cacerts",
+      "version": "1.0-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libcrypto1.1",
+      "version": "1.1.1b-r1",
+      "type": "linux"
+    },
+    {
+      "name": "p11-kit",
+      "version": "0.23.14-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libxrender",
+      "version": "0.9.10-r3",
+      "type": "linux"
+    },
+    {
+      "name": "libjpeg-turbo",
+      "version": "1.5.3-r4",
+      "type": "linux"
+    },
+    {
+      "name": "libc-utils",
+      "version": "0.7.1-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libxcomposite",
+      "version": "0.4.4-r2",
+      "type": "linux"
+    },
+    {
+      "name": "lcms2",
+      "version": "2.9-r1",
+      "type": "linux"
+    },
+    {
+      "name": "openjdk8-jre",
+      "version": "8.212.04-r0",
+      "type": "linux"
+    },
+    {
+      "name": "alpine-keys",
+      "version": "2.1-r1",
+      "type": "linux"
+    },
+    {
+      "name": "libcom_err",
+      "version": "1.44.5-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libstdc++",
+      "version": "8.3.0-r0",
+      "type": "linux"
+    },
+    {
+      "name": "ca-certificates-cacert",
+      "version": "20190108-r0",
+      "type": "linux"
+    },
+    {
+      "name": "openjdk8-jre-lib",
+      "version": "8.212.04-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libpng",
+      "version": "1.6.37-r0",
+      "type": "linux"
+    },
+    {
+      "name": "libx11",
+      "version": "1.6.7-r0",
+      "type": "linux"
+    }
+  ],
+  "platform": "docker",
+  "image_name": "test",
+  "updated_at": "2018-11-07T10:48:10.040Z",
+  "digest": "ca24faef44ef9641581de2f61669142abe48591db899108936b3d035287c9461",
+  "tag": "1.0-SNAPSHOT",
+  "potentially_unwanted_programs": [],
+  "docker_image_id": "000000000000",
+  "os_architecture": "AMD64"
+}
