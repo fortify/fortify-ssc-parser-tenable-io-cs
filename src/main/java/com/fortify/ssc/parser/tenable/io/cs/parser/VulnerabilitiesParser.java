@@ -15,7 +15,6 @@ import com.fortify.ssc.parser.tenable.io.cs.domain.Finding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFinding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFindingPackage;
 import com.fortify.ssc.parser.tenable.io.cs.parser.util.Constants;
-import com.fortify.util.json.ExtendedJsonParser;
 import com.fortify.util.ssc.parser.ScanDataStreamingJsonParser;
 import com.fortify.util.ssc.parser.VulnerabilityBuilder;
 import com.fortify.util.ssc.parser.VulnerabilityBuilder.CustomStaticVulnerabilityBuilder;
@@ -37,12 +36,8 @@ public class VulnerabilitiesParser {
 	 */
 	public final void parse() throws ScanParsingException, IOException {
 		new ScanDataStreamingJsonParser()
-			.handler("/findings/*", this::handleFinding)
+			.handler("/findings/*", Finding.class, this::handleFinding)
 			.parse(scanData);
-	}
-	
-	private final void handleFinding(ExtendedJsonParser jp) throws IOException {
-		handleFinding(jp.readValueAs(Finding.class));
 	}
 	
     private final void handleFinding(Finding finding) {
