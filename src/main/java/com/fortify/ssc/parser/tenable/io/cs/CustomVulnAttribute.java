@@ -14,7 +14,17 @@ package com.fortify.ssc.parser.tenable.io.cs;
  */
 
 public enum CustomVulnAttribute implements com.fortify.plugin.spi.VulnerabilityAttribute {
-	// TODO Add others
+	pkg(AttrType.STRING),
+	publishedDate(AttrType.DATE),
+	modifiedDate(AttrType.DATE),
+	cve(AttrType.STRING),
+	cveUrl(AttrType.STRING),
+	cvssScore(AttrType.DECIMAL),
+	cvssAccessVector(AttrType.STRING),
+	cvssAccessComplexity(AttrType.STRING),
+	cvssConfidentialityImpact(AttrType.STRING),
+	cvssIntegrityImpact(AttrType.STRING),
+	cvssAvailabilityImpact(AttrType.STRING),
 	cwe(AttrType.STRING),
     ;
 

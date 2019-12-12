@@ -24,6 +24,8 @@
  ******************************************************************************/
 package com.fortify.ssc.parser.tenable.io.cs.domain;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -32,7 +34,9 @@ import lombok.Getter;
 public final class NvdFinding {
 	@JsonProperty private String cve;
 	@JsonProperty private String description;
-	@JsonProperty private Float cvvs_score;
+	@JsonProperty private Date published_date;
+	@JsonProperty private Date modified_date;
+	@JsonProperty private Float cvss_score;
 	@JsonProperty private String access_vector;
 	@JsonProperty private String access_complexity;
 	@JsonProperty private String confidentiality_impact;

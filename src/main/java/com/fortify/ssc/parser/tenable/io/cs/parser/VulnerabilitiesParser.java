@@ -1,6 +1,7 @@
 package com.fortify.ssc.parser.tenable.io.cs.parser;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -61,7 +62,13 @@ public class VulnerabilitiesParser {
 		vb.setKingdom(FortifyKingdom.ENVIRONMENT.getKingdomName());
 		vb.setAnalyzer(FortifyAnalyser.CONFIGURATION.getAnalyserName());
 		vb.setCategory("Insecure Deployment");
-		vb.setSubCategory(cve);
+		vb.setSubCategory("Vulnerable Container");
+		
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.pkg, pkg.getName()+" "+pkg.getVersion());
+		vb.setDateCustomAttributeValue(CustomVulnAttribute.publishedDate, finding.getPublished_date());
+		vb.setDateCustomAttributeValue(CustomVulnAttribute.modifiedDate, finding.getModified_date());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cve, finding.getCve());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cveUrl, "https://nvd.nist.gov/vuln/detail/"+finding.getCve());
 		
 		// Set mandatory values to JavaDoc-recommended values
 		vb.setAccuracy(5.0f);
@@ -71,8 +78,21 @@ public class VulnerabilitiesParser {
 		vb.setFileName(pkgName);
 		vb.setVulnerabilityAbstract(finding.getDescription());
 		
-		// TODO
-		vb.setPriority(Priority.Medium);
+		Float cvvsScore = finding.getCvss_score();
+		if ( cvvsScore==null ) {
+			vb.setPriority(Priority.Medium);
+		} else {
+			vb.setDecimalCustomAttributeValue(CustomVulnAttribute.cvssScore, new BigDecimal(cvvsScore.toString()));
+			if ( cvvsScore < 3.9f ) {
+				vb.setPriority(Priority.Low);
+			} else if ( cvvsScore < 6.9f ) {
+				vb.setPriority(Priority.Medium);
+			} else if ( cvvsScore < 8.9f ) {
+				vb.setPriority(Priority.High);
+			} else {
+				vb.setPriority(Priority.Critical);
+			}
+		}
 		
 		String cwe = finding.getCwe();
 		if ( StringUtils.isNotBlank(cwe) ) {
@@ -80,6 +100,12 @@ public class VulnerabilitiesParser {
 			vb.setMappedCategory(cwe.replace("CWE-", "CWE ID "));
 			vb.setStringCustomAttributeValue(CustomVulnAttribute.cwe, String.join(", ", cwe));
 		}
+		
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessVector, finding.getAccess_vector());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessComplexity, finding.getAccess_complexity());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssConfidentialityImpact, finding.getConfidentiality_impact());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssIntegrityImpact, finding.getIntegrity_impact());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAvailabilityImpact, finding.getAvailability_impact());
 		
 		vb.completeVulnerability();
     }
