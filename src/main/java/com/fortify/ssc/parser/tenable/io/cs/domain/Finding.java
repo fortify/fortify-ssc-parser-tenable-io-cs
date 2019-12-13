@@ -31,5 +31,5 @@ import lombok.Getter;
 @Getter
 public final class Finding {
 	@JsonProperty private NvdFinding nvdFinding;
-	@JsonProperty private NvdFindingPackage[] packages;
+	@JsonProperty private Package[] packages;
 }

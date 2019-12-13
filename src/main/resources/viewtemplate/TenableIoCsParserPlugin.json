@@ -7,13 +7,6 @@
 			"items": [
 				{
 					"type": "template",
-					"title": "Package",
-					"key": "customAttributes.pkg",
-					"templateId": "SIMPLE",
-					"dataType": "string"
-				},
-				{
-					"type": "template",
 					"title": "Vulnerability",
 					"key": "customAttributes.cve",
 					"templateId": "SIMPLE",
@@ -46,8 +39,7 @@
 					"key": "customAttributes.publishedDate",
 					"templateId": "SIMPLE",
 					"dataType": "date"
-				}
-				,
+				},
 				{
 					"type": "template",
 					"title": "Modified",
@@ -59,8 +51,7 @@
 		},
 		{
 			"type": "template",
-			"title": "Description",
-			"key": "brief",
+			"key": "customAttributes.packages",
 			"templateId": "COLLAPSE",
 			"dataType": "string"
 		}
@@ -114,6 +105,13 @@
 					"dataType": "string"
 				}
 			]
+		},
+		{
+			"type": "template",
+			"title": "Description",
+			"key": "brief",
+			"templateId": "COLLAPSE",
+			"dataType": "string"
 		}
 	]
 ]

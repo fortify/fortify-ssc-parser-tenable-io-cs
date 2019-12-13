@@ -2,6 +2,8 @@ package com.fortify.ssc.parser.tenable.io.cs.parser;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +16,7 @@ import com.fortify.plugin.api.ScanParsingException;
 import com.fortify.ssc.parser.tenable.io.cs.CustomVulnAttribute;
 import com.fortify.ssc.parser.tenable.io.cs.domain.Finding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFinding;
-import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFindingPackage;
+import com.fortify.ssc.parser.tenable.io.cs.domain.Package;
 import com.fortify.ssc.parser.tenable.io.cs.parser.util.Constants;
 import com.fortify.util.ssc.parser.ScanDataStreamingJsonParser;
 import com.fortify.util.ssc.parser.VulnerabilityBuilder;
@@ -37,23 +39,15 @@ public class VulnerabilitiesParser {
 	 */
 	public final void parse() throws ScanParsingException, IOException {
 		new ScanDataStreamingJsonParser()
-			.handler("/findings/*", Finding.class, this::handleFinding)
+			.handler("/findings/*", Finding.class, this::buildVulnerability)
 			.parse(scanData);
 	}
 	
-    private final void handleFinding(Finding finding) {
-		NvdFindingPackage[] packages = finding.getPackages();
-		if ( packages!=null && packages.length>0 ) {
-			for ( NvdFindingPackage pkg : packages ) {
-				buildVulnerability(finding.getNvdFinding(), pkg);
-			}
-		}
-    }
-    
-    private final void buildVulnerability(NvdFinding finding, NvdFindingPackage pkg) {
-    	String pkgName = pkg.getName();
-    	String cve = finding.getCve();
-		String uniqueId = DigestUtils.sha256Hex(cve+"-"+pkgName);
+    private final void buildVulnerability(Finding finding) {
+    	NvdFinding nvdFinding = finding.getNvdFinding();
+		
+    	String cve = nvdFinding.getCve();
+		String uniqueId = DigestUtils.sha256Hex(cve);
 		CustomStaticVulnerabilityBuilder vb = vulnerabilityBuilder.startStaticVulnerability();
 		// TODO For now we let CustomStaticVulnerabilityBuilder handle duplicate id's
 		//      We should check whether there's a better way to generate unique id
@@ -64,21 +58,26 @@ public class VulnerabilitiesParser {
 		vb.setCategory("Insecure Deployment");
 		vb.setSubCategory("Vulnerable Container");
 		
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.pkg, pkg.getName()+" "+pkg.getVersion());
-		vb.setDateCustomAttributeValue(CustomVulnAttribute.publishedDate, finding.getPublished_date());
-		vb.setDateCustomAttributeValue(CustomVulnAttribute.modifiedDate, finding.getModified_date());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cve, finding.getCve());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cveUrl, "https://nvd.nist.gov/vuln/detail/"+finding.getCve());
+		vb.setDateCustomAttributeValue(CustomVulnAttribute.publishedDate, nvdFinding.getPublished_date());
+		vb.setDateCustomAttributeValue(CustomVulnAttribute.modifiedDate, nvdFinding.getModified_date());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cve, cve);
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cveUrl, "https://nvd.nist.gov/vuln/detail/"+cve);
 		
 		// Set mandatory values to JavaDoc-recommended values
 		vb.setAccuracy(5.0f);
 		vb.setConfidence(2.5f);
 		vb.setLikelihood(2.5f);
 		
-		vb.setFileName(pkgName);
-		vb.setVulnerabilityAbstract(finding.getDescription());
+		Package[] packages = finding.getPackages();
+		if ( packages!=null && packages.length>0 ) {
+			vb.setFileName(packages[0].getName());
+			vb.setStringCustomAttributeValue(CustomVulnAttribute.packages,
+					Arrays.asList(packages).stream().map(Object::toString).collect(Collectors.joining("<br/>\n")));
+		}
 		
-		Float cvvsScore = finding.getCvss_score();
+		vb.setVulnerabilityAbstract(nvdFinding.getDescription());
+		
+		Float cvvsScore = nvdFinding.getCvss_score();
 		if ( cvvsScore==null ) {
 			vb.setPriority(Priority.Medium);
 		} else {
@@ -94,18 +93,18 @@ public class VulnerabilitiesParser {
 			}
 		}
 		
-		String cwe = finding.getCwe();
+		String cwe = nvdFinding.getCwe();
 		if ( StringUtils.isNotBlank(cwe) ) {
 			// TODO Should this allow us to group by CWE in SSC? Doesn't currently work.
 			vb.setMappedCategory(cwe.replace("CWE-", "CWE ID "));
 			vb.setStringCustomAttributeValue(CustomVulnAttribute.cwe, String.join(", ", cwe));
 		}
 		
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessVector, finding.getAccess_vector());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessComplexity, finding.getAccess_complexity());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssConfidentialityImpact, finding.getConfidentiality_impact());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssIntegrityImpact, finding.getIntegrity_impact());
-		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAvailabilityImpact, finding.getAvailability_impact());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessVector, nvdFinding.getAccess_vector());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAccessComplexity, nvdFinding.getAccess_complexity());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssConfidentialityImpact, nvdFinding.getConfidentiality_impact());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssIntegrityImpact, nvdFinding.getIntegrity_impact());
+		vb.setStringCustomAttributeValue(CustomVulnAttribute.cvssAvailabilityImpact, nvdFinding.getAvailability_impact());
 		
 		vb.completeVulnerability();
     }

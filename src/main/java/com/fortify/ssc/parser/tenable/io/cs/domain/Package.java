@@ -24,13 +24,30 @@
  ******************************************************************************/
 package com.fortify.ssc.parser.tenable.io.cs.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 
 @Getter
-public final class NvdFindingPackage {
+public final class Package {
 	@JsonProperty private String name;
 	@JsonProperty private String version;
 	@JsonProperty private String type;
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		if ( StringUtils.isNotBlank(name) ) {
+			if ( StringUtils.isNotBlank(type)) {
+				sb.append("(").append(type).append(") ");
+			}
+			sb.append(name);
+			if ( StringUtils.isNotBlank(version) ) {
+				sb.append(": ").append(version);
+			}
+		}
+		return sb.toString();
+	}
 }
