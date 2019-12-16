@@ -23,7 +23,7 @@ licenseReport {
 }
 
 // Project and plugin version based on SCM information
-version = getProjectVersionAsBetaOrRelease()
+version = getProjectVersionAsBetaOrRelease(true)
 def downloadContainerName = getProjectVersionAsBetaOrRelease(false)
 def sscPluginVersion = getProjectVersionAsPlainVersionNumber()
 
