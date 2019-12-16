@@ -18,6 +18,7 @@ ext {
 
 // Project and plugin version based on SCM information
 version = getProjectVersionAsBetaOrRelease()
+def downloadContainerName = getProjectVersionAsBetaOrRelease(false)
 def sscPluginVersion = getProjectVersionAsPlainVersionNumber()
 
 repositories {
@@ -88,7 +89,8 @@ bintray {
         vcsUrl = 'https://github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs.git'
         userOrg = 'fortify-ps'
         version {
-			name = project.version
+			name = downloadContainerName
+			vcsTag = downloadContainerName
 		}
     }
     filesSpec {
