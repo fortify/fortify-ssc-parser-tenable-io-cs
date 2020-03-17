@@ -19,12 +19,12 @@ public class TenableIoCsParserPlugin implements ParserPlugin<CustomVulnAttribute
 
     @Override
     public void start() throws Exception {
-        LOG.info("OWASP dependency-check parser plugin is starting");
+        LOG.info("{} is starting", this.getClass().getSimpleName());
     }
 
     @Override
     public void stop() throws Exception {
-        LOG.info("OWASP dependency-check parser plugin is stopping");
+        LOG.info("{} is starting", this.getClass().getSimpleName());
     }
 
     @Override
