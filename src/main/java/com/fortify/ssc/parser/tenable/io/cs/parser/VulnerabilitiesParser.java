@@ -17,12 +17,13 @@ import com.fortify.ssc.parser.tenable.io.cs.CustomVulnAttribute;
 import com.fortify.ssc.parser.tenable.io.cs.domain.Finding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFinding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.Package;
-import com.fortify.ssc.parser.tenable.io.cs.parser.util.Constants;
+import com.fortify.util.ssc.parser.EngineTypeHelper;
 import com.fortify.util.ssc.parser.ScanDataStreamingJsonParser;
 import com.fortify.util.ssc.parser.VulnerabilityBuilder;
 import com.fortify.util.ssc.parser.VulnerabilityBuilder.CustomStaticVulnerabilityBuilder;
 
 public class VulnerabilitiesParser {
+	private static final String ENGINE_TYPE = EngineTypeHelper.getEngineType();
 	private final ScanData scanData;
 	private final VulnerabilityBuilder vulnerabilityBuilder;
 
@@ -52,7 +53,7 @@ public class VulnerabilitiesParser {
 		// TODO For now we let CustomStaticVulnerabilityBuilder handle duplicate id's
 		//      We should check whether there's a better way to generate unique id
 		vb.setInstanceId(uniqueId);
-		vb.setEngineType(Constants.ENGINE_TYPE);
+		vb.setEngineType(ENGINE_TYPE);
 		vb.setKingdom(FortifyKingdom.ENVIRONMENT.getKingdomName());
 		vb.setAnalyzer(FortifyAnalyser.CONFIGURATION.getAnalyserName());
 		vb.setCategory("Insecure Deployment");
