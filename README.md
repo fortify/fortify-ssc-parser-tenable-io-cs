@@ -8,7 +8,8 @@ This Fortify SSC parser plugin allows for importing scan results from Tenable.io
   _Beta versions may be unstable or non-functional. The `*-licenseReport.zip` and `*-dependencySources.zip` files are for informational purposes only and do not need to be downloaded._
 	* **Release versions**: https://bintray.com/package/files/fortify-ps/binaries/fortify-ssc-parser-tenable-io-cs-release?order=desc&sort=fileLastModified&basePath=&tab=files  
 	* **Beta versions**: https://bintray.com/package/files/fortify-ps/binaries/fortify-ssc-parser-tenable-io-cs-beta?order=desc&sort=fileLastModified&basePath=&tab=files
-	* **Sample input files**: [src/test/resources](src/test/resources)
+	* **Sample input files**: [sampleData](sampleData)
+* **GitHub**: https://github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs
 * **Automated builds**: https://travis-ci.com/fortify-ps/fortify-ssc-parser-tenable-io-cs
 * **Tenable.io Container Security website**: https://www.tenable.com/products/tenable-io/container-security
 
