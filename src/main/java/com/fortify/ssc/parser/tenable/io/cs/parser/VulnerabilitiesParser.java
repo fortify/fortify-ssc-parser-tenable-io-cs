@@ -68,7 +68,7 @@ public class VulnerabilitiesParser {
 		vb.setKingdom(FortifyKingdom.ENVIRONMENT.getKingdomName());
 		vb.setAnalyzer(FortifyAnalyser.CONFIGURATION.getAnalyserName());
 		vb.setCategory("Insecure Deployment");
-		vb.setSubCategory("Vulnerable Container");
+		vb.setSubCategory("Unpatched Application");
 		
 		vb.setDateCustomAttributeValue(CustomVulnAttribute.publishedDate, nvdFinding.getPublished_date());
 		vb.setDateCustomAttributeValue(CustomVulnAttribute.modifiedDate, nvdFinding.getModified_date());
