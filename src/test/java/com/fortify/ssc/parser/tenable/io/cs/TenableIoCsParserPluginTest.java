@@ -41,7 +41,6 @@ import com.fortify.plugin.api.ScanData;
 import com.fortify.plugin.api.ScanEntry;
 import com.fortify.plugin.api.StaticVulnerabilityBuilder;
 import com.fortify.plugin.api.VulnerabilityHandler;
-import com.fortify.ssc.parser.tenable.io.cs.TenableIoCsParserPlugin;
 
 class TenableIoCsParserPluginTest {
 	private final ScanData scanData = new ScanData() {
