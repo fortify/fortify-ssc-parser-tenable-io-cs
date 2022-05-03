@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.3.3](https://www.github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs/compare/v1.3.2...v1.3.3) (2022-05-03)
+
+
+### Bug Fixes
+
+* Add missing changelog entry in previous release ([298a037](https://www.github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs/commit/298a0370fc67ff35b06b6f65fc22e94255e7d90b))
+* Update (potentially vulnerable) dependency versions ([0f26475](https://www.github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs/commit/0f2647561687c76504cbb45ca1560145338958b5))
+
 ### [1.3.2](https://www.github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs/compare/v1.3.1...v1.3.2) (2022-05-03)
 
 
