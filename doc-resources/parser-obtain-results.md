@@ -1,0 +1,1 @@
+Please see the Tenable.io Container Security documentation for details on scanning applications and generating reports. Note that the SSC parser plugin requires the uploaded reports to be in JSON format.
