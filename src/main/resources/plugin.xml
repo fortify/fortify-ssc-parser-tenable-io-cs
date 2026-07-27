@@ -6,7 +6,7 @@
         <name>Tenable.io Container Security parser plugin</name>
         <version><!--VERSION-->0.0<!--/VERSION--></version>
         <data-version>1</data-version>
-        <vendor name="Micro Focus" url="https://www.microfocus.com"/>
+        <vendor name="Open Text" url="https://opentext.com"/>
         <description>Tenable.io Container Security parser plugin</description>
         <resources>
             <localization>
