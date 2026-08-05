@@ -23,7 +23,7 @@ public class ScanParser {
 			.handler("/image_name", jp -> scanBuilder.setBuildId(jp.getValueAsString()))
 			.handler("/tag", jp -> scanBuilder.setScanLabel(jp.getValueAsString()))
 			.handler("/installed_packages", jp -> scanBuilder.setNumFiles(jp.countArrayEntries()))
-			.parse(scanData);
+			.parse(scanData, scanData.getScanEntries().get(0));
 		scanBuilder.setEngineVersion("Unknown");
 		scanBuilder.completeScan();
 	}
