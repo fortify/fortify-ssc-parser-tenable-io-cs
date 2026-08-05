@@ -19,12 +19,12 @@ import com.fortify.ssc.parser.tenable.io.cs.CustomVulnAttribute;
 import com.fortify.ssc.parser.tenable.io.cs.domain.Finding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.NvdFinding;
 import com.fortify.ssc.parser.tenable.io.cs.domain.Package;
-import com.fortify.util.ssc.parser.EngineTypeHelper;
+import com.fortify.util.ssc.parser.PluginXmlHelper;
 import com.fortify.util.ssc.parser.HandleDuplicateIdVulnerabilityHandler;
 import com.fortify.util.ssc.parser.json.ScanDataStreamingJsonParser;
 
 public class VulnerabilitiesParser {
-	private static final String ENGINE_TYPE = EngineTypeHelper.getEngineType();
+	private static final String ENGINE_TYPE = PluginXmlHelper.getPluginXmlDescriptor().getEngineType();
 	private final ScanData scanData;
 	private final VulnerabilityHandler vulnerabilityHandler;
 
@@ -41,7 +41,7 @@ public class VulnerabilitiesParser {
 	public final void parse() throws ScanParsingException, IOException {
 		new ScanDataStreamingJsonParser()
 			.handler("/findings/*", Finding.class, this::buildVulnerabilityIfValid)
-			.parse(scanData);
+			.parse(scanData, scanData.getScanEntries().get(0));
 	}
 	
 	/**
