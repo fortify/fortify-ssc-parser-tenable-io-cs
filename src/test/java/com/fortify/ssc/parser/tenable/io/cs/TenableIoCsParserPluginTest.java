@@ -52,7 +52,7 @@ class TenableIoCsParserPluginTest {
 		
 		@Override
 		public List<ScanEntry> getScanEntries() {
-			return null;
+			return Arrays.asList(() -> "tenable.io-cs.json");
 		}
 		
 		@Override
