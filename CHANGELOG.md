@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.4](https://github.com/fortify/fortify-ssc-parser-tenable-io-cs/compare/v1.3.3...v1.3.4) (2026-08-11)
+
+
+### Bug Fixes
+
+* Update vendor name & URL to OpenText ([#14](https://github.com/fortify/fortify-ssc-parser-tenable-io-cs/issues/14)) ([72a5a53](https://github.com/fortify/fortify-ssc-parser-tenable-io-cs/commit/72a5a53fb6c7e6cacccbd31934525e4d08d43f11))
+* Upgrade dependencies ([2032f7d](https://github.com/fortify/fortify-ssc-parser-tenable-io-cs/commit/2032f7dd65034b729954487c54cfddf62dcb9a6c))
+
 ### [1.3.3](https://www.github.com/fortify-ps/fortify-ssc-parser-tenable-io-cs/compare/v1.3.2...v1.3.3) (2022-05-03)
 
 
