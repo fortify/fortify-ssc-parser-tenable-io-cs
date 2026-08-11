@@ -12,6 +12,7 @@ import com.fortify.plugin.api.BasicVulnerabilityBuilder.Priority;
 import com.fortify.plugin.api.FortifyAnalyser;
 import com.fortify.plugin.api.FortifyKingdom;
 import com.fortify.plugin.api.ScanData;
+import com.fortify.plugin.api.ScanEntry;
 import com.fortify.plugin.api.ScanParsingException;
 import com.fortify.plugin.api.StaticVulnerabilityBuilder;
 import com.fortify.plugin.api.VulnerabilityHandler;
@@ -26,10 +27,12 @@ import com.fortify.util.ssc.parser.json.ScanDataStreamingJsonParser;
 public class VulnerabilitiesParser {
 	private static final String ENGINE_TYPE = PluginXmlHelper.getPluginXmlDescriptor().getEngineType();
 	private final ScanData scanData;
+	private final ScanEntry scanEntry;
 	private final VulnerabilityHandler vulnerabilityHandler;
 
-    public VulnerabilitiesParser(final ScanData scanData, final VulnerabilityHandler vulnerabilityHandler) {
+    public VulnerabilitiesParser(final ScanData scanData, final ScanEntry scanEntry, final VulnerabilityHandler vulnerabilityHandler) {
     	this.scanData = scanData;
+		this.scanEntry = scanEntry;
 		this.vulnerabilityHandler = new HandleDuplicateIdVulnerabilityHandler(vulnerabilityHandler);
 	}
     
@@ -41,7 +44,7 @@ public class VulnerabilitiesParser {
 	public final void parse() throws ScanParsingException, IOException {
 		new ScanDataStreamingJsonParser()
 			.handler("/findings/*", Finding.class, this::buildVulnerabilityIfValid)
-			.parse(scanData, scanData.getScanEntries().get(0));
+			.parse(scanData, scanEntry);
 	}
 	
 	/**
